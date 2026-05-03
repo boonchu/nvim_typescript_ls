@@ -1,8 +1,8 @@
 #### Install NeoVim Plugin TS
 
-- Adding Lua Rocks
+- Adding Lua Rocks, Find files, RipGrep
 ```
-brew install luarocks
+brew install luarocks fd ripgrep
 ```
 
 - Create directory
@@ -18,4 +18,11 @@ rsync -a init.lua ~/.config/nvim/
   - Run `:checkhealth lsp` to confirm the client is attached.
 
 - Tips
-  - Use 'Ctrl-w+d' to see why code fail with the line starting with 'E'
+  - Default `<leader>` is space bar
+  - LSPKind custom keys
+    - Use 'Ctrl-w+d' to see why code fail with the line starting with 'E'
+  - Telescope custom keys
+    - `<space>+<ff>` 'Find Files'
+    - `<space>+<fg>` 'Live Grep'
+    - `<space>+<fb>` 'Find buffer'
+    - `<space>+<fh>` 'Help Tags'

@@ -90,11 +90,50 @@ require("lazy").setup({
       end
     },
 
+    -- 6. Telescope plugin
+
+    {
+      'nvim-telescope/telescope.nvim',
+      tag = '0.1.8', -- Use the latest stable version
+      dependencies = { 
+        'nvim-lua/plenary.nvim',
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+      },
+      config = function()
+        require('telescope').setup({
+          -- Optional: add your custom telescope settings here
+        })
+        -- Load the fast fzf extension if it's installed
+        pcall(require('telescope').load_extension, 'fzf')
+      end
+    },
+
   },
+
   rocks = { enabled = false }, -- Keep this to avoid the LuaRocks error
   install = { colorscheme = { "habamax" } },
   checker = { enabled = true },
+
 })
+
+-- DEFAULT KEY BINDING
+-- Set the leader key to Space
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+local builtin = require('telescope.builtin')
+
+-- Basic file and text search
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find Files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Live Grep' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Find Buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Help Tags' })
+
+-- TypeScript/LSP specific search
+vim.keymap.set('n', 'gr', builtin.lsp_references, { desc = 'Go to References' })
+vim.keymap.set('n', 'gd', builtin.lsp_definitions, { desc = 'Go to Definition' })
+vim.keymap.set('n', '<leader>ds', builtin.lsp_document_symbols, { desc = 'Document Symbols' })
+
 
 -- IMPORTANT: Remove any require("mason").setup() lines from the bottom of your file!
 -- The configuration is now handled inside the block above.
