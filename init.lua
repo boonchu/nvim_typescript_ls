@@ -108,8 +108,50 @@ require("lazy").setup({
       end
     },
 
-  },
+    -- 7. TSC Plugin
+    {
+      "dmmulroy/tsc.nvim",
+      config = function()
+        require("tsc").setup({
+          auto_open_qflist = true, -- Automatically open the quickfix list if errors are found
+        })
+      end,
+    },
 
+    -- 8. Beautiful notifications
+    {
+      "rcarriga/nvim-notify",
+      config = function()
+        local notify = require("notify")
+        notify.setup({
+          background_colour = "#000000", -- Better for transparent terminals
+          timeout = 3000,                -- Auto-dismiss after 3 seconds
+        })
+        -- Set Neovim's default notification to use this plugin
+        vim.notify = notify
+      end,
+    },
+
+    -- 9. Center the prompt
+    {
+      "folke/noice.nvim",
+      event = "VeryLazy",
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+        "rcarriga/nvim-notify",
+      },
+      opts = {
+        -- This moves the command line to the center and uses notify for messages
+        lsp = {
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.set_autocmd_ roundtable"] = true,
+          },
+        },
+      },
+    },
+
+  },
   rocks = { enabled = false }, -- Keep this to avoid the LuaRocks error
   install = { colorscheme = { "habamax" } },
   checker = { enabled = true },
@@ -134,6 +176,8 @@ vim.keymap.set('n', 'gr', builtin.lsp_references, { desc = 'Go to References' })
 vim.keymap.set('n', 'gd', builtin.lsp_definitions, { desc = 'Go to Definition' })
 vim.keymap.set('n', '<leader>ds', builtin.lsp_document_symbols, { desc = 'Document Symbols' })
 
+-- Keybinding to trigger project-wide TypeScript type-checking
+vim.keymap.set('n', '<leader>tc', ':TSC<CR>', { desc = 'Run Project-Wide Type-Check' })
 
 -- IMPORTANT: Remove any require("mason").setup() lines from the bottom of your file!
 -- The configuration is now handled inside the block above.
