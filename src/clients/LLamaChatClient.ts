@@ -35,12 +35,12 @@ export class LLamaChatClient {
   }
 
   /**
-   * Sends a list of messages to the LLAMA.CPP service and returns the response content.
+   * Sends a list of essages to the LLAMA.CPP service and returns the response content.
    * @param messages The conversation history.
    * @returns A promise that resolves with the model's response content.
    * @throws Error if the API call fails.
    */
-  public async getChatCompletion(messages: ChatMessage[]): Promise<string> {
+  public async getChatCompletion(messages: Array<ChatMessage>): Promise<string> {
     try {
       const response: AxiosResponse<ChatCompletionResponse> = await this.axiosInstance.post(
         '', // The endpoint path is already in the baseURL
@@ -49,6 +49,10 @@ export class LLamaChatClient {
           messages: messages,
           temperature: 0.7, // Default temperature
           max_tokens: 2048, // Default max tokens
+          stream: true,
+          stream_options: {
+            include_usage: true, // This is the critical line
+          },
         },
       );
 
