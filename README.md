@@ -35,3 +35,4 @@ rsync -a init.lua ~/.config/nvim/
 
 - For linux wsl2 user on windows:
   - When use clipboard after you highlight what need to go, you have to use this `:'<,'>w !clip.exe`
+  - After launching terminal with Linux shell, you can hit Ctl+',' to launch settings and run setup to disable Ctrl+'v' and Ctrl+'c' as Linux uses keys for different purpose.
