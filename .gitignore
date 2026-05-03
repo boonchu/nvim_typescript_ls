@@ -1,0 +1,16 @@
+# Dependencies
+/node_modules
+
+# Build output
+/dist
+/lib
+
+# Logs
+*.log
+
+# Editor/IDE files
+.vscode/
+.idea/
+
+# TypeScript specific
+tsconfig.tsbuildinfo
