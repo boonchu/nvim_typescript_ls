@@ -1,5 +1,6 @@
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
 	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
@@ -39,7 +40,12 @@ require("lazy").setup({
 		},
 
 		-- 3. LSP Configs
-		{ "neovim/nvim-lspconfig" },
+		{
+			"neovim/nvim-lspconfig",
+			config = function()
+				-- Apply it to your vtsls setup
+			end,
+		},
 
 		-- 4. Prettier
 		{
@@ -148,21 +154,42 @@ require("lazy").setup({
 				lsp = {
 					override = {
 						["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-						["vim.lsp.util.set_autocmd_ roundtable"] = true,
+						["vim.lsp.util.stylize_markdown"] = true,
 					},
 				},
 			},
 		},
 
-		-- 10. LLM client
+		-- 10. treesitter
+		{
+			"nvim-treesitter/nvim-treesitter",
+			branch = "master",
+			build = ":TSUpdate", -- Automatically update parsers when the plugin updates
+			config = function()
+				local configs = require("nvim-treesitter.configs")
+				configs.setup({
+					ensure_installed = { "lua", "vim", "bash" },
+					sync_install = false,
+					highlight = { enable = true },
+					indent = { enable = true },
+				})
+			end,
+		},
+
+		-- 11. LLM client
 		{
 			"huggingface/llm.nvim",
 			dependencies = { "nvim-lua/plenary.nvim" },
 			config = function()
 				require("llm").setup({
-					backend = "ollama",
-					url = "http://localhost:8080", -- Where your llama-server is running
-					model = "ai/gemma4:E4B",
+					api_token = "xxx",
+					backend = "llamacpp",
+					url = "http://localhost:8080/v1/chat", -- Where your llama-server is running
+					model = "gemma4:E4B",
+					request_body = {
+						temperature = 0.2,
+						top_p = 0.95,
+					},
 					lsp = {
 						-- This is the crucial path from Step 3
 						bin_path = vim.fn.stdpath("data") .. "/mason/bin/llm-ls",
@@ -174,6 +201,7 @@ require("lazy").setup({
 			end,
 		},
 	},
+
 	rocks = { enabled = false }, -- Keep this to avoid the LuaRocks error
 	install = { colorscheme = { "habamax" } },
 	checker = { enabled = true },

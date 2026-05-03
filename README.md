@@ -16,6 +16,7 @@ rsync -a init.lua ~/.config/nvim/
   - Run `:Mason` to see if `vtsls` is installed.Open a .ts file 
   - Run `:checkhealth lazy` and `:checkhealth mason`
   - Run `:checkhealth lsp` to confirm the client is attached.
+  - Run `:checkhealth noice` to confirm notify is attached.
 
 - For Local LLM service
   - Run `:MasonInstall llm-ls` to install LLM client
@@ -31,3 +32,6 @@ rsync -a init.lua ~/.config/nvim/
     - `<space>+<fh>` 'Help Tags'
   - TSC plugin custom keys
     - `<space>+<tc>` ':TSC<enter>'
+
+- For linux wsl2 user on windows:
+  - When use clipboard after you highlight what need to go, you have to use this `:'<,'>w !clip.exe`
