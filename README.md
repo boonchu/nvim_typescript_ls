@@ -17,6 +17,9 @@ rsync -a init.lua ~/.config/nvim/
   - Run `:checkhealth lazy` and `:checkhealth mason`
   - Run `:checkhealth lsp` to confirm the client is attached.
 
+- For Local LLM service
+  - Run `:MasonInstall llm-ls` to install LLM client
+
 - Tips
   - Default `<leader>` is space bar
   - LSPKind plugin custom keys
