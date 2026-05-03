@@ -19,10 +19,12 @@ rsync -a init.lua ~/.config/nvim/
 
 - Tips
   - Default `<leader>` is space bar
-  - LSPKind custom keys
+  - LSPKind plugin custom keys
     - Use 'Ctrl-w+d' to see why code fail with the line starting with 'E'
-  - Telescope custom keys
+  - Telescope plugin custom keys
     - `<space>+<ff>` 'Find Files'
     - `<space>+<fg>` 'Live Grep'
     - `<space>+<fb>` 'Find buffer'
     - `<space>+<fh>` 'Help Tags'
+  - TSC plugin custom keys
+    - `<space>+<tc>` ':TSC<enter>'
