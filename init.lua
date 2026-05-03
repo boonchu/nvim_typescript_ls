@@ -158,6 +158,16 @@ require("lazy").setup({
 					},
 				},
 			},
+			routes = {
+				{
+					filter = {
+						event = "msg_show",
+						kind = "wmsg",
+						find = "position_encoding param is required in vim.lsp.util.make_position_params.",
+					},
+					opts = { skip = true },
+				},
+			},
 		},
 
 		-- 10. treesitter
@@ -177,29 +187,29 @@ require("lazy").setup({
 		},
 
 		-- 11. LLM client
-		{
-			"huggingface/llm.nvim",
-			dependencies = { "nvim-lua/plenary.nvim" },
-			config = function()
-				require("llm").setup({
-					api_token = "xxx",
-					backend = "llamacpp",
-					url = "http://localhost:8080/v1/chat", -- Where your llama-server is running
-					model = "gemma4:E4B",
-					request_body = {
-						temperature = 0.2,
-						top_p = 0.95,
-					},
-					lsp = {
-						-- This is the crucial path from Step 3
-						bin_path = vim.fn.stdpath("data") .. "/mason/bin/llm-ls",
-					},
-					debounce_ms = 150,
-					accept_keymap = "<C-j>", -- Ctrl+j to accept
-					dismiss_keymap = "<C-e>", -- Ctrl+e to ignore
-				})
-			end,
-		},
+		-- {
+		-- 	"huggingface/llm.nvim",
+		-- 	dependencies = { "nvim-lua/plenary.nvim" },
+		-- 	config = function()
+		-- 		require("llm").setup({
+		-- 			api_token = "xxx",
+		-- 			backend = "llamacpp",
+		-- 			url = "http://localhost:8080/v1/chat", -- Where your llama-server is running
+		-- 			model = "gemma4:E4B",
+		-- 			request_body = {
+		-- 				temperature = 0.2,
+		-- 				top_p = 0.95,
+		-- 			},
+		-- 			lsp = {
+		-- 				-- This is the crucial path from Step 3
+		-- 				bin_path = vim.fn.stdpath("data") .. "/mason/bin/llm-ls",
+		-- 			},
+		-- 			debounce_ms = 150,
+		-- 			accept_keymap = "<C-j>", -- Ctrl+j to accept
+		-- 			dismiss_keymap = "<C-e>", -- Ctrl+e to ignore
+		-- 		})
+		-- 	end,
+		-- },
 	},
 
 	rocks = { enabled = false }, -- Keep this to avoid the LuaRocks error
