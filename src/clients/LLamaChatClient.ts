@@ -25,7 +25,7 @@ export interface ChatCompletionResponse {
 export class LLamaChatClient {
   private axiosInstance: AxiosInstance;
 
-  constructor(baseUrl: string = 'http://localhost:8080/v1/chat/completion') {
+  constructor(baseUrl: string = 'http://localhost:8080/v1/chat/completions') {
     this.axiosInstance = axios.create({
       baseURL: baseUrl,
       headers: {
