@@ -38,6 +38,58 @@ require("lazy").setup({
 
     -- 3. LSP Configs
     { "neovim/nvim-lspconfig" },
+
+    -- 4. Prettier
+    {
+      "stevearc/conform.nvim",
+      opts = {
+        -- Define your formatters by filetype
+        formatters_by_ft = {
+          javascript = { "prettier" },
+          typescript = { "prettier" },
+          javascriptreact = { "prettier" },
+          typescriptreact = { "prettier" },
+          json = { "prettier" },
+        },
+        -- Enable "format on save"
+        format_on_save = {
+          timeout_ms = 500,
+          lsp_format = "fallback",
+        },
+      },
+    },
+
+    -- 5. LSPKind 
+    {
+      "hrsh7th/nvim-cmp",
+      dependencies = {
+        "onsails/lspkind.nvim",      -- The icon plugin
+        "hrsh7th/cmp-nvim-lsp",      -- LSP source for cmp
+        "L3MON4D3/LuaSnip",          -- Snippets
+      },
+      config = function()
+        local cmp = require('cmp')
+        local lspkind = require('lspkind')
+
+        cmp.setup({
+          formatting = {
+            format = lspkind.cmp_format({
+              mode = 'symbol_text',  -- shows icon + name (e.g.    Function)
+              maxwidth = 50,
+            })
+          },
+          -- Basic mappings to make the menu work
+          mapping = cmp.mapping.preset.insert({
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          }),
+          sources = {
+            { name = 'nvim_lsp' },
+          },
+        })
+      end
+    },
+
   },
   rocks = { enabled = false }, -- Keep this to avoid the LuaRocks error
   install = { colorscheme = { "habamax" } },

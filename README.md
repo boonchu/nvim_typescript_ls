@@ -15,4 +15,7 @@ rsync -a init.lua ~/.config/nvim/
   - Run `:Lazy` to see if all plugins have a checkmark.
   - Run `:Mason` to see if `vtsls` is installed.Open a .ts file 
   - Run `:checkhealth lazy` and `:checkhealth mason`
-  - Run `:LSPInfo` to confirm the client is attached.
+  - Run `:checkhealth lsp` to confirm the client is attached.
+
+- Tips
+  - Use 'Ctrl-w+d' to see why code fail with the line starting with 'E'
