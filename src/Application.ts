@@ -11,6 +11,7 @@ export class Application {
     console.log('Application started successfully!');
 
     const chatHistory: ChatMessage[] = [
+      { role: 'system', content: 'You are Typescript developer who has skills in Axios OpenAI.' },
       { role: 'user', content: 'What is the best way to structure a modern TypeScript project?' },
     ];
 

@@ -4,26 +4,24 @@
     "llama.cpp": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "LLAMA.CPP (local)",
-      "api_url": "http://localhost:8080/v1",
-      "system": "You are Typescript developer who uses best practices for Axios and follows the OpenAI API schema.",
+      "options": {
+        "baseURL": "http://127.0.0.1:8080/v1"
+      },
       "models": {
         "qwen3.5:9B-UD-Q4_K_XL": {
-          "name": "ai/qwen3.5:9B-UD-Q4_K_XL"
+          "name": "ai/qwen3.5:9B",
+          "limit": {
+            "context": 32768,
+            "output": 8192
+          }
         },
         "gemma4:E4B": {
-          "name": "ai/gemma4:E4B"
-        }
-      },
-      "options": {
-        "baseURL": "http://127.0.0.1:8080/v1",
-        "toolParser": [
-          {
-            "type": "raw-function-call"
-          },
-          {
-            "type": "json"
+          "name": "ai/gemma4:E4B",
+          "limit": {
+            "context": 32768,
+            "output": 8192
           }
-        ]
+        }
       }
     }
   },

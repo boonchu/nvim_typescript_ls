@@ -49,9 +49,9 @@ export class LLamaChatClient {
           messages: messages,
           temperature: 0.7, // Default temperature
           max_tokens: 2048, // Default max tokens
-          stream: true,
+          stream: false, // Interactive boolean for chatbot mode
           stream_options: {
-            include_usage: true, // This is the critical line
+            include_usage: false, // This is the critical line
           },
         },
       );
