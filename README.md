@@ -17,11 +17,12 @@ rsync -a init.lua ~/.config/nvim/
   - Run `:checkhealth lazy` and `:checkhealth mason`
   - Run `:checkhealth lsp` to confirm the client is attached.
   - Run `:checkhealth noice` to confirm notify is attached.
+  - RUn `:checkhealth provider` to confirm health status from provider
 
 - For Local LLM service
   - Run `:MasonInstall llm-ls` to install LLM client
 
-- Tips
+- For Keyboard Tips
   - Default `<leader>` is space bar
   - LSPKind plugin custom keys
     - Use 'Ctrl-w+d' to see why code fail with the line starting with 'E'
@@ -36,3 +37,10 @@ rsync -a init.lua ~/.config/nvim/
 - For linux wsl2 user on windows:
   - When use clipboard after you highlight what need to go, you have to use this `:'<,'>w !clip.exe`
   - After launching terminal with Linux shell, you can hit Ctl+',' to launch settings and run setup to disable Ctrl+'v' and Ctrl+'c' as Linux uses keys for different purpose.
+  - Use 'Ctrl'+'Insert' for Copy and 'Shift'+'Insert' for Paste
+  - Install win32yank.exe when needs to yank lines from editor when use mouse highlight
+```
+sudo mv win32yank.exe /usr/local/bin/
+sudo chmod +x /usr/local/bin/win32yank.exe
+```
+  - Use '<space>+y' for copy and '<space>+p' for paste

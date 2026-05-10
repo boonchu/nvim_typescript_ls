@@ -223,6 +223,10 @@ vim.opt.shiftwidth = 2 -- Number of spaces for auto-indent
 vim.opt.expandtab = true -- Convert tabs to spaces
 vim.opt.softtabstop = 2 -- Number of spaces a <Tab> counts for while editi
 
+-- Detect if running in WSL or native Windows
+local is_windows = vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1
+local is_wsl = vim.fn.has("unix") == 1 and vim.fn.readfile("/proc/version")[1]:match("Microsoft") ~= nil
+
 -- DEFAULT KEY BINDING
 -- Set the leader key to Space
 vim.g.mapleader = " "
@@ -243,6 +247,29 @@ vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols, { desc = "Docume
 
 -- Keybinding to trigger project-wide TypeScript type-checking
 vim.keymap.set("n", "<leader>tc", ":TSC<CR>", { desc = "Run Project-Wide Type-Check" })
+
+-- Detect if running in WSL or native Windows
+local is_windows = vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1
+local is_wsl = vim.fn.has("unix") == 1 and vim.fn.readfile("/proc/version")[1]:match("Microsoft") ~= nil
+
+-- DEFAULT LINIX WSL2
+-- install win32yank.exe from github and move .exe to /usr/local/bin
+-- echo "hello brave new world!" | win32yank.exe -i # paste with [shift]+[ins]
+if is_windows or is_wsl then
+	vim.opt.clipboard = "unnamedplus"
+	vim.g.clipboard = {
+		name = "win32yank-wsl",
+		copy = {
+			["+"] = "win32yank.exe -i --crlf",
+			["*"] = "win32yank.exe -i --crlf",
+		},
+		paste = {
+			["+"] = "win32yank.exe -o --lf",
+			["*"] = "win32yank.exe -o --lf",
+		},
+		cache_enabled = 0,
+	}
+end
 
 -- IMPORTANT: Remove any require("mason").setup() lines from the bottom of your file!
 -- The configuration is now handled inside the block above.
