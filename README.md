@@ -34,6 +34,11 @@ rsync -a init.lua ~/.config/nvim/
   - TSC plugin custom keys
     - `<space>+<tc>` ':TSC<enter>'
 
+- For Visual Muliline Plugin
+  - Enable: 'Ctrl+n' enable multiline mode
+  - Replace: 'Ctrl+n' and move cursor to word and press 'n' to keep search for replace and hit 'c' to replace word
+  - Append: 'Ctrl+n' and 'Ctrl+ArrowDown/Up' to move lines, 'w' to move cursor each word, and append
+
 - For linux wsl2 user on windows:
   - When use clipboard after you highlight what need to go, you have to use this `:'<,'>w !clip.exe`
   - After launching terminal with Linux shell, you can hit Ctl+',' to launch settings and run setup to disable Ctrl+'v' and Ctrl+'c' as Linux uses keys for different purpose.

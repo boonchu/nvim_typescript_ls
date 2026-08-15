@@ -210,6 +210,15 @@ require("lazy").setup({
 		-- 		})
 		-- 	end,
 		-- },
+
+		-- 11. VIM Visual Multi
+		{
+			"mg979/vim-visual-multi",
+			init = function()
+				-- Define configuration or global variables before the plugin loads
+				vim.g.VM_default_mappings = 1
+			end,
+		},
 	},
 
 	rocks = { enabled = false }, -- Keep this to avoid the LuaRocks error
