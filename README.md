@@ -42,9 +42,9 @@ rsync -a init.lua ~/.config/nvim/
 - For linux wsl2 user on windows to copy to clipboard:
   - In general, use `Ctrl+Insert` for Copy and `Shift+Insert` for Paste from browser to neovim (windows, terminal -> neovim)
   - In neovim editor:
-    - Install win32yank.exe when needs to yank lines from editor when use mouse highlight
+    * Install win32yank.exe when needs to yank lines from editor when use mouse highlight
 ```
 sudo mv win32yank.exe /usr/local/bin/
 sudo chmod +x /usr/local/bin/win32yank.exe
 ```
-    - Use `<space>+y` for copy and `<space>+p` for paste from neovim mouse highlight to new location in editor (neovim -> neovim)
+    * Use `<space>+y` for copy and `<space>+p` for paste from neovim mouse highlight to new location in editor (neovim -> neovim)
