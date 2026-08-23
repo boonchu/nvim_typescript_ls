@@ -47,5 +47,5 @@ rsync -a init.lua ~/.config/nvim/
 sudo mv win32yank.exe /usr/local/bin/
 sudo chmod +x /usr/local/bin/win32yank.exe
 ```
-  - Use `Ctrl+Insert` for Copy and `Shift+Insert` for Paste from browser to neovim
-  - Use `<space>+y` for copy and `<space>+p` for paste from neovim mouse highlight to new location in editor
+  - Use `Ctrl+Insert` for Copy and `Shift+Insert` for Paste from browser to neovim (windows, terminal -> neovim)
+  - Use `<space>+y` for copy and `<space>+p` for paste from neovim mouse highlight to new location in editor (neovim -> neovim)
